@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A32BAC193A7806853DEFCE7 /* Pods_MVVM_Api_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7811E8B18F61509E865ACFD9 /* Pods_MVVM_Api_Demo.framework */; };
+		585FF6082CF5FCBF00AF149E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585FF6072CF5FCBF00AF149E /* MainView.swift */; };
 		58609EF62CF44AAC00522DAF /* MVVM_Api_DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58609EF52CF44AAC00522DAF /* MVVM_Api_DemoApp.swift */; };
 		58609EF82CF44AAC00522DAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58609EF72CF44AAC00522DAF /* ContentView.swift */; };
 		58609EFA2CF44AAE00522DAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58609EF92CF44AAE00522DAF /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		066230894A190CC920D3D8D2 /* Pods-MVVM_Api_Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVM_Api_Demo.debug.xcconfig"; path = "Target Support Files/Pods-MVVM_Api_Demo/Pods-MVVM_Api_Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		41D2FF03D1A37268E005D2E3 /* Pods-MVVM_Api_Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVM_Api_Demo.release.xcconfig"; path = "Target Support Files/Pods-MVVM_Api_Demo/Pods-MVVM_Api_Demo.release.xcconfig"; sourceTree = "<group>"; };
+		585FF6072CF5FCBF00AF149E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		58609EF22CF44AAC00522DAF /* MVVM_Api_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVM_Api_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58609EF52CF44AAC00522DAF /* MVVM_Api_DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVM_Api_DemoApp.swift; sourceTree = "<group>"; };
 		58609EF72CF44AAC00522DAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		585FF6062CF5FCAA00AF149E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				585FF6072CF5FCBF00AF149E /* MainView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		58609EE92CF44AAC00522DAF = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +101,7 @@
 				58609EF52CF44AAC00522DAF /* MVVM_Api_DemoApp.swift */,
 				58609EF72CF44AAC00522DAF /* ContentView.swift */,
 				58609F242CF48AA800522DAF /* Common */,
+				585FF6062CF5FCAA00AF149E /* App */,
 				58609F072CF44B3B00522DAF /* APIManager */,
 				58609F032CF44ACD00522DAF /* Modal */,
 				58609F062CF44B2300522DAF /* Service */,
@@ -299,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58609F0D2CF44D3600522DAF /* APIServiceManager.swift in Sources */,
+				585FF6082CF5FCBF00AF149E /* MainView.swift in Sources */,
 				58609F172CF45E0D00522DAF /* ArticleListView.swift in Sources */,
 				58609F1D2CF4840C00522DAF /* LoginViewModal.swift in Sources */,
 				58609F0B2CF44D1C00522DAF /* APIRequestUrl.swift in Sources */,

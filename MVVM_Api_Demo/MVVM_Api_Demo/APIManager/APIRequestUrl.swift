@@ -10,7 +10,7 @@ import Foundation
 struct APIURL {
     static let headerKey = "Authorization"
     static let  baseUrl = "https://saurav.tech/NewsAPI/"
-    static let  baseURL2 = "https://dummyjson.com/users/"
+    static let  baseURL2 = "https://reqres.in/api/"
 }
 
 struct NewsModule {
@@ -18,7 +18,7 @@ struct NewsModule {
 }
 
 struct LoginModule {
-    static let login = APIURL.baseURL2 + "auth/login"
+    static let login = APIURL.baseURL2 + "login"
 }
 
 
@@ -31,4 +31,5 @@ struct LoginModule {
 // "https://saurav.tech/NewsAPI/top-headlines/category/health/in.json"
 
 
-//'https://dummyjson.com/auth/login'
+//"https://reqres.in/api/login"
+

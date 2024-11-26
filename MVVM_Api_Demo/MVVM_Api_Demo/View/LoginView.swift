@@ -11,16 +11,29 @@ struct LoginView: View {
     @ObservedObject private var loginViewModel = LoginViewModel()
     @State private var navigateToNewsView: Bool = false
 
+    @State private var scale: CGFloat = 1.0
+    @State private var isAnimating: Bool = false
+    
+    @State private var showAlert: Bool = false
+    @State private var alertMessage: String = ""
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 VStack {
-                    Image(Theme.ventuoraLogo)
+                    Spacer()
+                    Image("newsPic")
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
                         .padding()
                         .aspectRatio(contentMode: .fit)
+                        .scaleEffect(scale) // Apply scale effect
+                        .onAppear {
+                            withAnimation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: true)) {
+                                scale = 1.1
+                            }
+                        }
                     
                     Spacer().frame(height: 20)
                     
@@ -50,11 +63,13 @@ struct LoginView: View {
                         }) {
                             Text(AppTextName.login)
                                 .font(.headline)
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .cornerRadius(8)
                         }
+                        .background(Color.black)
+                        .cornerRadius(5)
                         .padding(.horizontal, 10)
                         .frame(width: 100.0)
                         Spacer()
@@ -74,14 +89,26 @@ struct LoginView: View {
 
     // MARK: - Login Handle Function
     func handleLogin() {
+        if loginViewModel.username.isEmpty {
+            alertMessage = "Please enter your email."
+            showAlert = true
+            return
+        }
+        
+        if loginViewModel.password.isEmpty {
+            alertMessage = "Please enter your password."
+            showAlert = true
+            return
+        }
+
         loginViewModel.validation { title, message, status in
             if status {
                 // Set navigateToNewsView to true to trigger the NavigationLink
                 navigateToNewsView = true
             } else {
                 // Handle login failure (e.g., show an alert)
-                // You can use an alert or other UI elements to notify the user
-                print("Login failed: \(message)")
+                alertMessage = message!
+                showAlert = true
             }
         }
     }

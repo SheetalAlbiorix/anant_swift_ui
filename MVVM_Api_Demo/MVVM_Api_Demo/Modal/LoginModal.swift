@@ -10,18 +10,16 @@
 
 
 
-import Foundation
-
-struct LoginModal: Decodable {
-    let user: User
-    let token: String
-
-    struct User: Decodable {
-        let id: Int
-        let firstName: String
-        let lastName: String
-        let email: String
-        let username: String
-        // Add other fields as necessary
-    }
+struct LoginRequest: Encodable {
+    let email: String
+    let password: String
 }
+
+struct LoginResponse: Decodable {
+    let token: String
+}
+
+struct ErrorResponse: Decodable {
+    let error: String
+}
+

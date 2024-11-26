@@ -9,41 +9,51 @@ import SwiftUI
 import Foundation
 
 class LoginViewModel: ObservableObject {
-    @Published var username: String = "emilys" // Changed from email to username
-    @Published var password: String = "emilyspass"
+    @Published var username: String = "eve.holt@reqres.in"  /* eve.holt@reqres.in*/
+    @Published var password: String = "cityslicka" /*cityslicka*/
+    @Published var isLoading: Bool = false
+    @Published var errorMessage: String? = nil
+    @Published var successMessage: String? = nil
     
+    // Validation for username and password
     func validation(completionHandler: @escaping (String?, String?, Bool) -> Void) {
         // Validate inputs
         if username.isEmpty {
-            completionHandler(AppTextName.emailValidation, AppTextName.emailValidationMsg, false)
+            completionHandler("Username is required", "Please enter your username.", false)
         } else if password.isEmpty {
-            completionHandler(AppTextName.passValidation, AppTextName.passValidationMsg, false)
+            completionHandler("Password is required", "Please enter your password.", false)
         } else {
-            // Call login function
+            // Proceed to login if validation passes
             callLogin { status, message in
                 if status {
-                    completionHandler(AppTextName.loginSuccess, message, status)
+                    completionHandler("Login Successful", message, status)
                 } else {
-                    completionHandler(AppTextName.loginFail, message, status)
+                    completionHandler("Login Failed", message, status)
                 }
             }
         }
     }
     
+    // API call to login
     func callLogin(completionHandler: @escaping (Bool, String) -> Void) {
-        // Prepare parameters for the login request
-        let parameter = ["username": username, "password": password] as NSDictionary
+        isLoading = true
+        let parameter = LoginRequest(email: username, password: password)
         
-        // Call the login service
-        LoginService.shared.postUserAuthAPI(parameter: parameter as! [String : Any]) { result in
+        LoginService.shared.postUserAuthAPI(parameter: parameter) { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+            
             switch result {
-            case .success(let success):
-                // Successful login
-                completionHandler(true, AppTextName.loginSuccessMsg)
-                print("Login successful: \(success.user.username)") // Adjusted to access the user object
-            case .failure(let failure):
-                // Handle login failure
-                completionHandler(false, failure.localizedDescription)
+            case .success(let response):
+                // Store the token and handle success
+                UserDefaults.standard.set(response.token, forKey: "authToken")
+                completionHandler(true, "Login successful! Welcome, \(response.token).")
+                print("Login successful: \(response.token)")  // Successful login
+            case .failure(let error):
+                // Handle failure
+                completionHandler(false, error.localizedDescription)
+                print("Login failed: \(error.localizedDescription)")  // Handle error
             }
         }
     }
